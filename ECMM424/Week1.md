@@ -108,5 +108,141 @@ train pilots)
 - Most operational models are stochastic, dynamic, and discrete,
 therefore will be called discrete-event simulation models
 
-### Simulation Models:
-Stochastic vs. Deterministic
+#### Simulation Models: Stochastic vs. Deterministic
+
+| determinisitc | stochastic
+| ----- |----- |
+| no pobablisitic component/random var in sys| has 1+ rnadom var as input|
+|Have a known set of fixed inputs | Random inputs lead to
+random outputs. Random outputs are estimates of true model characterstics |
+
+#### Simulation Models: Static vs. Dynamic
+| Static | Dynamic|
+| ----- |----- |
+| Time plays no role|Represents a system as it evolves over time|
+|Example: Monte Carlo Method, calculating value of Pi|Exemple: Simulation of a Bank from 9:00 A.M. to 4:00 P.M. |
+
+
+#### Simulation Models: Discrete vs. Continuous
+| Static | Dynamic|
+| ----- |----- |
+| TThe state variable(s) changes only at discrete points in time |The state variable(s) changes continuously |
+
+
+## Steps in a Simulation Study
+1. Problem formulation
+    - Understand the problem to be addressed by simulation clearly.
+    - Agree the problem formulation between the policy maker and the
+    analyst.
+
+2. Setting of the objectives and overall project plan
+    - The objectives indicate the questions to be answered by simulation.
+    - What to do with the simulation?
+    -  Determine whether simulation is the appropriate methodology
+    -  Form the project plan
+
+3. Model conceptualization (constructing the model)
+    - Model: an abstract representation of the system.
+    - What should be included in model? What can be left out?
+    - Appropriate choice depends on the purpose of the model.
+    -  What abstractions should be used? What is the level of details?
+
+4. Data collection
+    - The more data you have→ the more complete information you get→ the
+    more precise model you can build→ the better solution you would get
+
+5. Model translation (Developing a computer program)
+    - Program the model into a computer language from a computational model,
+    -  OR: Use special-purpose simulation software.
+
+6. Verified?
+    - Is the computer program prepared for the simulation model correct?
+    - Are the input parameters and logical structure of the model correctly
+    represented in the computer?
+    - Is the computer program performing properly? 
+
+7. Validated?
+    - Determine if the model is an accurate representation of the real system.
+    -  Validation is an iterative process of comparing the model to actual system
+    -Helps to improve the model.
+
+8. Experimental design: Decide on
+    - The length of the initialization period,
+    - The length of simulation runs, and
+    - The number of replications to be made of each run.
+
+9. Production runs and analysis
+    -  Estimate the performance measures of the system design that is being
+    simulated.
+
+10. More runs?
+    - The analyst determines of additional runs are needed.
+
+11. Documentation and reporting
+    - Program documentation
+    - Reusability
+    - Maintenance
+    - Modification of parameters
+
+12. Implementation: The success of the implementation phase depends on
+how well the previous eleven steps have been performed
+
+### Alternative Approaches to Modeling and Simulations
+- Discrete-event simulation follows a logic in simulation which is
+sequential, and all work is done on a single computer.
+    - Parallel and distributed simulation
+    - Various kinds of parallel and distributed architectures
+    - Break up a simulation model in some way
+    - Run the different parts simultaneously on different parallel processors
+- Web-based simulation
+    - Client-server simulation
+    - Central simulation engine, submit “jobs” over the web
+    - Wide-scope parallel/distributed simulation
+ 
+ ## Simulation Table
+ - provides a systematic method for tracking system state over time.
+ - Steps to consider:
+    1. Determine the characteristics of each of the inputs to the
+    simulation.
+    2. Construct a simulation table (repetitions, inputs, response).
+    3. For each repetition, generate a value for each of the inputs.
+
+### Simulation of Queuing Systems
+- Simulation is often used in the analysis of queuing models
+- Typical measures of system performance
+    ▪ Server utilization
+    ▪ Length of waiting lines
+    ▪ Delays of customers
+
+- Key Elements of Queuing Systems
+        ![alt text](image-2.png)
+
+- In simulation, events usually occur at random times.
+- Randomness imitates uncertainty in real life.
+- Random numbers are distributed uniformly and
+independently on the interval (0,1).
+- Interarrival times and service times are generated
+from the distributions of random variables that
+characterize the nature of arrivals and departures,
+respectively.
+
+### properties of single-server queueing system
+| **Feature**           | **Description**                                                                 |
+|-----------------------|---------------------------------------------------------------------------------|
+| **Calling Population** | Infinite                                                                        |
+| **Nature of Arrival Process** | Random Fashion                                                          |
+| **Service Time**       | Random Length according to a probability distribution                            |
+| **System Capacity**    | No Limit                                                                        |
+| **Queuing Discipline** | FIFO (First In, First Out)                                                      |
+| **State Variables**    | • Status of server (idle, busy)<br>• Current length of the queue<br>• Time of arrival of each customer now in queue |
+| **Events**            | • Arrival of a new customer<br>• Service completion (and departure) of a customer<br>• End-simulation event (a “fake” event) (Maybe) |
+
+
+#### Example: Queueing Model of a Grocery Store
+-  Arrival pattern is characterized by InterArrival Times (IAT), which are random numbers between 1 and 8 minutes apart
+- Time required by the cashier to serve a customer is characterized by the Service Time (ST) distribution. Service times vary  from 1 to 6 minutes randomly.
+- The first customer arrives at time 0 and the successive customers arrive after each interarrival time
+
+
+(customer 3 arrives at 14, which is previous customer time + interval time)
+        ![alt text](image-3.png)
