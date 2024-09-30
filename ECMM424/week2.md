@@ -16,6 +16,7 @@
 ## Time-Advance Mechanism
 - Simulation clock: A variable representing the simulation time (i.e., the current value of simulated time in the model)
 - The time unit must be consistent for each individual simulation
+
 - When a simulation model is generated, the time unit is usually the same as that of the input parameters.
     ![alt text](image-4.png)
     - approaches for time advance
@@ -28,6 +29,10 @@
 - step, t, is fixed regardless of the actual time of event
 - If one or more events occurred during a step, these events are considered to occur at the end of this step
 
+  ![alt text](image-12.png)
+    - we can see the x axis represents time, which is evenly split
+    - here we see thta if we check state in incements of 1 min for example, and cutsomer is 30 secons in, we miss that interval, therefore we shift to next valid interval. but also note if 1+ customer in a gap between intervall, all will be shifted to next interval, meaning we loose information about the order in which they arrived
+
 - adv:  Very simple! Can be very efficient when used in right case. (ie ATM (Asynchronous transfer model) networks (Cell size is fixed to 53 Bytes))
 
 - disadv: How big should t be?
@@ -36,6 +41,9 @@
     - If t is too small: Too many empty cycles => long computational time and low efficiency
 
 ### Next-Event Time-Advance Approach
+
+    ![alt text](image-13.png)
+    - here we can observe jumps in the time axis to next event, meaning we miss no events. this way the system updates at exactly the correct times
 
 - Initialize simulation clock to zero.
 - Determine the occurrence time of future events- event list
@@ -48,12 +56,22 @@
     - Next-Event Time Advance in Single-Server Queueing Systems
 
 
+
+
+### Flow Control for Next-Event Time-Advance
+Approach
+    ![alt text](image-11.png)
+    - statistical counters can represent delay, utilisaiton ...
+    - the time routine decides what the next event is (type), this can be done by checking event list to find what happens first, and advance simultaion clock to the time of arrival of first customer (ith customer)
+    - event routine conducts what should be changed to the sys, ie sys state and statistical counters + generate future events and add to the event list to esnure the the simulation can keep running + continue doing so till termination criteria at whic ponit we gen the reprort
+
+
 ## Components of a Discrete-Event Simulation Model
 - System state: The collection of state variables necessary to
  describe the system at a particular time.
 - Simulation clock: A variable giving the current value of simulated time.
 - Event list:  A list containing the next time when each event will
- occur as well as the event type.
+ occur as well as the event type (arrive/dpature).
 - Statistical counters:  Variables used for storing statistical information.
 - Initialization routine: A subprogram to initialize the simulation at time 0.
 - Timing routine:  A subprogram to determine the time and type of the
@@ -62,6 +80,9 @@
 - Library routines: To generate random variates
 - Report generator: To summarize and report results at end
 - Main program : To tie routines together and execute them in right order
+
+
+*yopu can create an event list before hand but if you need to early stop you waste resources, as you jasve not used majority of events. also storage considerations. THreerfore if we generate the next event after completing the current, we always have the next event in terms of storage and computation consumption*
 
 ## Approaches to Event-Scheduling
 
@@ -77,14 +98,28 @@ with focus on the events and how they affect the system state.
 ### perfomance measures
 - Expected average delay in queue of the n customers completing service
     ![alt text](image-6.png)
-
+    - sum of delays of all customers / sum(num of customers)
+    - therefore need to record delay for each customer
 
 ### intuitive explaination
 
+based on interarrival times we can determine the acrtual arrival times, ie first arrivat a1 = 0.4 then a2 = 1.2 therefore customer 2 arrives at ( 1.6)
 
 
+t0 = total time no customers is waiting in queue
+t1 = how long 1 customer is waiting in queue
+t2 = how long 2 customers waitingin in the cusue
+therefore 0 * t0 + 1 * t1 * 2 + t2
+then divide by total simulation time
+which will give total waiting time in queue
 
 
+##### Measures of Performance: Expected Utilization of the Server
+vertcal axis represents the busyness of server
+and x axis is time
+so just sum the total time the server is busy over total time to get the percentage of the serceer being bugy
+
+b(t) how busy the eserver, q(t)  waiting time
 
 
 # Implementation of A Single-Server Queueing System Simulator
@@ -100,11 +135,12 @@ with focus on the events and how they affect the system state.
     – K: capacity of the queue - the maximum number of customers
     in the queue
     – N: size of the population from which the customers come
-    – D: queuing discipline
+    – D: queuing discipline (i.e, FIFO, LIFO, Priority)
 
 
 ### M/M/1 Queueing System
 - Exponentially distributed random variables are notated by M, meaning Markovain or memoryless.
+    - exponential distribution has memoryless (markovian property). this property means that they arrive/occur independent of eachother. so here we are saying arrival time and service time are independent for each event 
     - present events that happen randomly but with a constant probability over time.
     - memoryless: means that the past doesn't affect the future
 
@@ -315,3 +351,14 @@ continuous-time Markov chain (CTMC) with state space 0, 1, · · · .
 
 
 
+
+
+
+pdf = read it as after time x, the probability of a customer arriving in the system is on the y, moideled by the curve using lambda, where lambda is the arrival rate
+
+- because we dont know what time the next customer would arrive (on the axis), -> can we use a number between 0,1 to find the next arrivarl time by generating a random naumber in that range, thn looking at the curve and extrapoliating to the x
+
+
+lambsda is arrival rate in markov chain, mu is service rate. o to go from state 1, 0 it emplies 1 customer has depearted with service rate mu
+
+*interarrive times generated with random numbres*
