@@ -18,7 +18,7 @@
 - The time unit must be consistent for each individual simulation
 
 - When a simulation model is generated, the time unit is usually the same as that of the input parameters.
-    ![alt text](image-4.png)
+    ![alt text](../media/image-4.png)
     - approaches for time advance
         1. Fixed-increment time advance (seldom used)
         2. Next-event time advance (usually used)
@@ -29,7 +29,7 @@
 - step, t, is fixed regardless of the actual time of event
 - If one or more events occurred during a step, these events are considered to occur at the end of this step
 
-  ![alt text](image-12.png)
+  ![alt text](../media/image-12.png)
     - we can see the x axis represents time, which is evenly split
     - here we see thta if we check state in incements of 1 min for example, and cutsomer is 30 secons in, we miss that interval, therefore we shift to next valid interval. but also note if 1+ customer in a gap between intervall, all will be shifted to next interval, meaning we loose information about the order in which they arrived
 
@@ -42,8 +42,9 @@
 
 ### Next-Event Time-Advance Approach
 
-    ![alt text](image-13.png)
-    - here we can observe jumps in the time axis to next event, meaning we miss no events. this way the system updates at exactly the correct times
+![alt text](../media/image-13.png)
+
+- here we can observe jumps in the time axis to next event, meaning we miss no events. this way the system updates at exactly the correct times
 
 - Initialize simulation clock to zero.
 - Determine the occurrence time of future events- event list
@@ -52,7 +53,7 @@
     - The system state is updated.
     - The type and time of future events are determined to update the event list.
 - Continue until some pre-specified stopping rule of simulation is satisfied.
-    ![alt text](image-5.png)
+    ![alt text](../media/image-5.png)
     - Next-Event Time Advance in Single-Server Queueing Systems
 
 
@@ -60,7 +61,7 @@
 
 ### Flow Control for Next-Event Time-Advance
 Approach
-    ![alt text](image-11.png)
+    ![alt text](../media/image-11.png)
     - statistical counters can represent delay, utilisaiton ...
     - the time routine decides what the next event is (type), this can be done by checking event list to find what happens first, and advance simultaion clock to the time of arrival of first customer (ith customer)
     - event routine conducts what should be changed to the sys, ie sys state and statistical counters + generate future events and add to the event list to esnure the the simulation can keep running + continue doing so till termination criteria at whic ponit we gen the reprort
@@ -97,7 +98,7 @@ with focus on the events and how they affect the system state.
 
 ### perfomance measures
 - Expected average delay in queue of the n customers completing service
-    ![alt text](image-6.png)
+    ![alt text](../media/image-6.png)
     - sum of delays of all customers / sum(num of customers)
     - therefore need to record delay for each customer
 
@@ -315,10 +316,10 @@ report()
 - Inter-arrival intervals are exponentially distributed.
 - The probability density function (PDF) of an exponential distribution
 is given by
-    ![alt text](image-7.png)
+    ![alt text](../media/image-7.png)
 
 - and its cumulative distribution function (CDF) given by:
-    ![alt text](image-8.png)
+    ![alt text](../media/image-8.png)
 
 
 #### Step 9: Define EXPON(mean) function
@@ -329,7 +330,7 @@ float expon(mean)
 }
 
 - We can generate random numbers according to the exponential distribution by using the inverse transform technique
-    ![alt text](image-9.png)
+    ![alt text](../media/image-9.png)
 
 - To generate a uniformly distributed random number on (0, 1) in Java use math.random()
 
@@ -345,7 +346,7 @@ float expon(mean)
 - Exponentially distributed “M” --> memoryless property --> N(t) is a
 continuous-time Markov chain (CTMC) with state space 0, 1, · · · .
 - The state-transition diagram for this Markov chain is as below:
-    ![alt text](image-10.png)
+    ![alt text](../media/image-10.png)
     -  Traffic ratio or traffic intensity: 𝜌 = 𝜆/𝜇 
     - Stationary probability of State n: πn
 

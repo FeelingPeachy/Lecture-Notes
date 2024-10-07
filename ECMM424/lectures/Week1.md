@@ -57,7 +57,8 @@ Model is used as a design tool and also an analysis tool
 - To study potential changes to the systems and predict their impact after they are built and in operation.
 - to get answers for "what if" questions
 
-        ![alt text](image.png)
+![alt text](../media/image.png)
+
 
 ### two ways to solve the model:
 - Physical models are the models whose physical characteristics resemble those of the actual system. It looks or feels like the real thing.
@@ -103,7 +104,7 @@ train pilots)
 - Less dangerous and less expensive
 
 ### Taxonomy of Simulation Models
-        ![alt text](image-1.png)
+![alt text](../media/image-1.png)
 
 - Most operational models are stochastic, dynamic, and discrete,
 therefore will be called discrete-event simulation models
@@ -215,7 +216,7 @@ sequential, and all work is done on a single computer.
     ▪ Delays of customers
 
 - Key Elements of Queuing Systems
-        ![alt text](image-2.png)
+        ![alt text](../media/image-2.png)
 
 - In simulation, events usually occur at random times.
 - Randomness imitates uncertainty in real life.
@@ -245,4 +246,4 @@ respectively.
 
 
 (customer 3 arrives at 14, which is previous customer time + interval time)
-        ![alt text](image-3.png)
+        ![alt text](../media/image-3.png)
